@@ -1,5 +1,5 @@
 let score = 0;
-let timeLeft = 30;
+let timeLeft = 40;
 let moleTimer;
 let gameTimer;
 let activeMole = null;
@@ -33,7 +33,7 @@ function hitMole() {
 
 function startGame() {
     score = 0;
-    timeLeft = 30;
+    timeLeft = 40;
     document.getElementById("score").textContent = score;
     document.getElementById("time-left").textContent = timeLeft;
 
