@@ -1,0 +1,38 @@
+START Whack-a-Mole
+
+SET score = 0
+SET timeLeft = 30
+SET activeMole = NULL
+
+FUNCTION startGame():
+    RESET score and timeLeft
+    DISPLAY "Score: 0"
+    DISPLAY "Time Left: 30 seconds"
+    START moleTimer (showMole every 700ms)
+    START gameTimer (countdown every 1 second)
+
+FUNCTION showMole():
+    IF activeMole EXISTS THEN
+        REMOVE activeMole
+    ENDIF
+
+    SET randomHole = RANDOM(available holes)
+    CREATE mole in randomHole
+    SET activeMole = mole
+    WAIT for player to click
+
+FUNCTION hitMole():
+    INCREMENT score by 1
+    REMOVE mole from hole
+    UPDATE "Score: " + score
+    SET activeMole = NULL
+
+FUNCTION countdown():
+    DECREMENT timeLeft by 1
+    UPDATE "Time Left: " + timeLeft + " seconds"
+
+    IF timeLeft == 0 THEN
+        STOP moleTimer
+        STOP gameTimer
+        DISPLAY "Game Over! Final Score: " + score
+    ENDIF
