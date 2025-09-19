@@ -3,6 +3,7 @@ let timeLeft = 40;
 let moleTimer;
 let gameTimer;
 let activeMole = null;
+let level = 1; // Add a level variable
 
 function randomHole() {
     const holes = document.querySelectorAll(".hole");
@@ -34,8 +35,10 @@ function hitMole() {
 function startGame() {
     score = 0;
     timeLeft = 40;
+    level = 1; // Reset level when starting a new game
     document.getElementById("score").textContent = score;
     document.getElementById("time-left").textContent = timeLeft;
+    document.getElementById("level").textContent = level; // Display the level
 
     moleTimer = setInterval(showMole, 700);
     gameTimer = setInterval(countdown, 1000);
@@ -48,6 +51,17 @@ function countdown() {
     if (timeLeft === 0) {
         clearInterval(moleTimer);
         clearInterval(gameTimer);
-        alert(`Game Over! Final Score: ${score}`);
+        nextLevel(); // Move to the next level
     }
+}
+
+function nextLevel() {
+    level++; // Increment the level
+    timeLeft = 40; // Reset time for the new level
+    document.getElementById("level").textContent = level; // Update level display
+
+    // Adjust mole speed based on level (e.g., faster moles)
+    const moleSpeed = Math.max(200, 700 - level * 100); // Minimum speed is 200ms
+    moleTimer = setInterval(showMole, moleSpeed);
+    gameTimer = setInterval(countdown, 1000);
 }
