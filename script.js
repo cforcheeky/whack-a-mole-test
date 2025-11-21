@@ -61,6 +61,15 @@ function hitSpecialMole() {
     activeMole.remove();
     activeMole = null;
 }
+// Helper to reset boss UI and state
+function resetBossUI() {
+    bossActive = false;
+    bossHP = 0;
+    const bossHPDisplay = document.getElementById("boss-hp");
+    if (bossHPDisplay) bossHPDisplay.remove();
+    const bossStyle = document.getElementById('boss-styles');
+    if (bossStyle) bossStyle.remove();
+}
 
 // Function to start the game and initialize variables for the first level
 function startGame() {
@@ -87,6 +96,13 @@ function startLevel() {
     moleTimer = setInterval(showMole, Math.max(1100 - level * 60, 300)); // Decrease mole appearance time with levels
     gameTimer = setInterval(countdown, 1000); // Countdown timer for the level
 }
+
+function startLevel() {
+    resetBossUI(); // CAN BE REMOVED LATER
+    document.getElementById("level").textContent = level;
+    adjustGridAndHoles(level);
+    moleTimer = setInterval(showMole, Math.max(1100 - level * 60, 300));
+    gameTimer = setInterval(countdown, 1000);
 
 // Function to adjust grid size and number of holes based on the current level, increasing as levels progress
 function adjustGridAndHoles(level) {
@@ -291,6 +307,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
