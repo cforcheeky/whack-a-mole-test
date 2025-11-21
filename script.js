@@ -77,6 +77,17 @@ function startGame() {
     startLevel();
 }
 
+ // Ensure boss state is reset TESTER
+    bossActive = false;
+    bossHP = 0;
+    // Remove boss HP display if present
+    const bossHPDisplay = document.getElementById("boss-hp");
+    if (bossHPDisplay) bossHPDisplay.remove();
+    // Remove boss styles injected during the boss fight
+    const bossStyle = document.getElementById('boss-styles');
+    if (bossStyle) bossStyle.remove();
+}
+
 function startLevel() {
     document.getElementById("level").textContent = level;
 
@@ -290,3 +301,4 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
