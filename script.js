@@ -63,21 +63,11 @@ function hitSpecialMole() {
 }
 
 // Function to start the game and initialize variables for the first level
+// Function to start the game and initialize variables for the first level
 function startGame() {
-    clearInterval(moleTimer);
-    clearInterval(gameTimer);
+    clearInterval(moleTimer); // Clear any existing mole timer
+    clearInterval(gameTimer); // Clear any existing game timer
 
-    // Ensure boss state is reset
-    bossActive = false;
-    bossHP = 0;
-    // Remove boss HP display if present
-    const bossHPDisplay = document.getElementById("boss-hp");
-    if (bossHPDisplay) bossHPDisplay.remove();
-    // Remove boss styles injected during the boss fight
-    const bossStyle = document.getElementById('boss-styles');
-    if (bossStyle) bossStyle.remove();
-
-    // Reset UI and variables as usual
     score = 0;
     timeLeft = 30;
     level = 1;
@@ -312,5 +302,6 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
