@@ -10,18 +10,10 @@
     <h1>Whack-a-Mole</h1>
     <p>Score: <span id="score">0</span></p>
     <p>Time Left: <span id="time-left">30</span> seconds</p>
+    <div>Level: <span id="level">1</span></div>
     
-    <div class="game-grid">
-        <!-- 9 Holes for the moles -->
-        <div class="hole" id="hole1"></div>
-        <div class="hole" id="hole2"></div>
-        <div class="hole" id="hole3"></div>
-        <div class="hole" id="hole4"></div>
-        <div class="hole" id="hole5"></div>
-        <div class="hole" id="hole6"></div>
-        <div class="hole" id="hole7"></div>
-        <div class="hole" id="hole8"></div>
-        <div class="hole" id="hole9"></div>
+    <div id="game-board" style="display: grid; gap: 10px;">
+        <!-- Holes will be dynamically added here -->
     </div>
 
     <button onclick="startGame()">Start Game</button>
