@@ -215,6 +215,11 @@ function startBossFight() {
     hole.appendChild(boss);
     activeMole = boss;
 
+     // Move boss mole to a random hole
+    moveBossMoleToRandomHole(); // Place initially
+    bossMoleTimer = setInterval(moveBossMoleToRandomHole, bossMoveInterval);
+
+
     // Update UI to show boss fight
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = "Boss";
@@ -318,6 +323,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
