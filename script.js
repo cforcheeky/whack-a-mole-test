@@ -194,8 +194,8 @@ function startBossFight() {
     gameBoard.innerHTML = "";
 
     // Make a single large hole that fills the board
-    gameBoard.style.gridTemplateColumns = `repeat(2, 2fr)`;
-    gameBoard.style.gridTemplateRows = `repeat(2, 2fr)`;
+    gameBoard.style.gridTemplateColumns = `repeat(1, 1fr)`;
+    gameBoard.style.gridTemplateRows = `repeat(1, 1fr)`;
 
     const hole = document.createElement("div");
     hole.classList.add("hole", "boss-hole");
@@ -300,6 +300,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
