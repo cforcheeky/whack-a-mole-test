@@ -9,7 +9,7 @@ let level = 1;
 let bossActive = false;
 let bossHP = 0;
 const bossClicksRequired = 100; // clicks required to defeat boss
-const bossFightTime = 15; // seconds for boss fight
+const bossFightTime = 25; // seconds for boss fight
 let bossTimer;
 
 // Function to get a random hole element and ensure no two holes overlap in size
@@ -300,6 +300,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
