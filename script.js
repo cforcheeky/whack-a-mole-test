@@ -180,7 +180,6 @@ function countdown() {
     }
 }
 
-// Start the boss fight: FOUR holes and boss mole moves between them
 function startBossFight() {
     bossActive = true;
     bossHP = bossClicksRequired;
@@ -192,7 +191,7 @@ function startBossFight() {
         activeMole.remove();
         activeMole = null;
     }
-    clearInterval(bossMoleTimer); // If restarting boss, clear old interval
+    clearInterval(bossMoleTimer);
 
     const gameBoard = document.getElementById("game-board");
     gameBoard.innerHTML = "";
@@ -212,12 +211,11 @@ function startBossFight() {
     const boss = document.createElement("div");
     boss.classList.add("boss-mole");
     boss.onclick = hitBossMole;
-    activeMole = boss;
+    activeMole = boss; // <-- don't append, just assign
 
-     // Move boss mole to a random hole
+    // Move boss mole to a random hole
     moveBossMoleToRandomHole(); // Place initially
     bossMoleTimer = setInterval(moveBossMoleToRandomHole, bossMoveInterval);
-
 
     // Update UI to show boss fight
     const levelEl = document.getElementById("level");
@@ -226,9 +224,10 @@ function startBossFight() {
     createOrUpdateBossHPDisplay();
 
     // Inject boss styles (if not present) to make boss visually larger
-    const style = document.createElement("style");
-    style.id = 'boss-styles';
-    style.innerHTML = `
+    if (!document.getElementById('boss-styles')) {
+        const style = document.createElement("style");
+        style.id = 'boss-styles';
+        style.innerHTML = `
         .boss-hole { position: relative; width: 100%; height: 100%; }
         .boss-mole {
             position: absolute;
@@ -243,7 +242,8 @@ function startBossFight() {
             transform: translate(-50%, -50%);
         }
     `;
-    document.head.appendChild(style);
+        document.head.appendChild(style);
+    }
 
     // Start boss countdown
     timeLeft = bossFightTime;
@@ -322,6 +322,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
