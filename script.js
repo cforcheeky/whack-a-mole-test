@@ -11,6 +11,8 @@ let bossHP = 0;
 const bossClicksRequired = 100; // clicks required to defeat boss
 const bossFightTime = 25; // seconds for boss fight
 let bossTimer;
+let bossMoleTimer;        // NEW: timer for boss jumping between holes
+const bossMoveInterval = 700;// ms - speed of boss movement
 
 // Function to get a random hole element and ensure no two holes overlap in size
 function randomHole() {
@@ -69,6 +71,7 @@ function resetBossUI() {
     if (bossHPDisplay) bossHPDisplay.remove();
     const bossStyle = document.getElementById('boss-styles');
     if (bossStyle) bossStyle.remove();
+    clearInterval(bossMoleTimer);
 }
 
 function startGame() {
@@ -177,7 +180,7 @@ function countdown() {
     }
 }
 
-// Start the boss fight: single large hole and a boss mole that requires multiple clicks
+// Start the boss fight: FOUR holes and boss mole moves between them
 function startBossFight() {
     bossActive = true;
     bossHP = bossClicksRequired;
@@ -189,18 +192,21 @@ function startBossFight() {
         activeMole.remove();
         activeMole = null;
     }
+    clearInterval(bossMoleTimer); // If restarting boss, clear old interval
 
     const gameBoard = document.getElementById("game-board");
     gameBoard.innerHTML = "";
 
-    // Make a single large hole that fills the board
-    gameBoard.style.gridTemplateColumns = `repeat(1, 1fr)`;
-    gameBoard.style.gridTemplateRows = `repeat(1, 1fr)`;
+    // Make a 2x2 grid of boss holes
+    gameBoard.style.gridTemplateColumns = `repeat(2, 1fr)`;
+    gameBoard.style.gridTemplateRows = `repeat(2, 1fr)`;
 
-    const hole = document.createElement("div");
-    hole.classList.add("hole", "boss-hole");
-    // boss-hole should take full area; we'll add a boss mole inside
-    gameBoard.appendChild(hole);
+    // Create 4 boss holes
+    for (let i = 0; i < 4; i++) {
+        const hole = document.createElement("div");
+        hole.classList.add("hole", "boss-hole");
+        gameBoard.appendChild(hole);
+    }
 
     // Create boss mole
     const boss = document.createElement("div");
@@ -239,6 +245,18 @@ function startBossFight() {
     timeLeft = bossFightTime;
     document.getElementById("time-left").textContent = timeLeft;
     gameTimer = setInterval(countdown, 1000);
+}
+
+// NEW: Move boss mole to a random boss-hole
+function moveBossMoleToRandomHole() {
+    if (!bossActive) return;
+    // Remove boss from existing parent
+    if (activeMole && activeMole.parentElement)
+        activeMole.parentElement.removeChild(activeMole);
+
+    const holes = document.querySelectorAll('.boss-hole');
+    const randomHole = holes[Math.floor(Math.random() * holes.length)];
+    randomHole.appendChild(activeMole);
 }
 
 function createOrUpdateBossHPDisplay() {
@@ -300,6 +318,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
