@@ -8,11 +8,11 @@ let level = 1;
 // Boss fight state
 let bossActive = false;
 let bossHP = 0;
-const bossClicksRequired = 100; // clicks required to defeat boss
+const bossClicksRequired = 75; // clicks required to defeat boss
 const bossFightTime = 25; // seconds for boss fight
 let bossTimer;
 let bossMoleTimer;        // NEW: timer for boss jumping between holes
-const bossMoveInterval = 1200;// ms - speed of boss movement
+const bossMoveInterval = 1500;// ms - speed of boss movement
 
 // Function to get a random hole element and ensure no two holes overlap in size
 function randomHole() {
@@ -322,6 +322,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
