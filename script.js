@@ -212,7 +212,6 @@ function startBossFight() {
     const boss = document.createElement("div");
     boss.classList.add("boss-mole");
     boss.onclick = hitBossMole;
-    hole.appendChild(boss);
     activeMole = boss;
 
      // Move boss mole to a random hole
@@ -323,6 +322,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
