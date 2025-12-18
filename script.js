@@ -86,6 +86,8 @@ function startGame() {
     document.getElementById("score").textContent = score;
     document.getElementById("time-left").textContent = timeLeft;
     document.getElementById("level").textContent = level;
+    const startButton = document.querySelector("button");
+    startButton.textContent = "Restart Game";
 
     startLevel();
 }
@@ -322,6 +324,7 @@ function endGame(victory) {
     const levelEl = document.getElementById("level");
     if (levelEl) levelEl.textContent = victory ? 'Victory' : 'Game Over';
 }
+
 
 
 
