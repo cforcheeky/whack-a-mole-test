@@ -62,7 +62,8 @@ h1 {
 }
 
 .bad-mole {
-    background-image: url('evilmole.png'); 
+    background-color: transparent;
+    background-image: url('bad-mole.png'), url('mole.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
