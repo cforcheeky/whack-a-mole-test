@@ -32,7 +32,7 @@ h1 {
 }
 
 .mole {
-    background-image: url('moled.png'); /* (Current image is a placeholder) */
+    background-image: url('moled.png'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -47,7 +47,7 @@ h1 {
 }
 
 .special-mole {
-    background-image: url('mole.png'); /* (Current image is a placeholder) */
+    background-image: url('mole.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
