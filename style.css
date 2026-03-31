@@ -47,8 +47,6 @@ h1 {
 }
 
 .special-mole {
-    background-color: #ffff8f;
-    border: 2px solid #daa520;
     background-image: url('mole.png'); 
     background-size: cover;
     background-position: center;
