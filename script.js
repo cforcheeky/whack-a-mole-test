@@ -234,7 +234,7 @@ function startBossFight() {
         .boss-mole {
             position: absolute;
             cursor: pointer;
-            background: url('449.webp') center/cover no-repeat;
+            background: url('moled.png') center/cover no-repeat;
             width: 70%;
             height: 70%;
             border-radius: 70%;
