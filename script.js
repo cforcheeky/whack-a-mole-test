@@ -34,10 +34,10 @@ function showMole() {
 
     // Randomly decide mole type: bad, special, or regular
     const randomVal = Math.random();
-    if (randomVal < 0.1) {
+    if (randomVal < 0.2) {
         mole.classList.add("bad-mole");
         mole.onclick = hitBadMole; // Bad mole click handler
-    } else if (randomVal < 0.3) {
+    } else if (randomVal < 0.2) {
         mole.classList.add("special-mole");
         mole.onclick = hitSpecialMole; // Special mole click handler
     } else {
