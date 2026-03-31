@@ -37,11 +37,9 @@ function showMole() {
     if (randomVal < 0.1) {
         mole.classList.add("bad-mole");
         mole.onclick = hitBadMole; // Bad mole click handler
-        mole.textContent = "-1";
     } else if (randomVal < 0.4) {
         mole.classList.add("special-mole");
         mole.onclick = hitSpecialMole; // Special mole click handler
-        mole.textContent = "2x";
     } else {
         mole.classList.add("mole");
         mole.onclick = hitMole; // Regular mole click handler
