@@ -11,7 +11,7 @@ let bossHP = 0;
 const bossClicksRequired = 75; // clicks required to defeat boss
 const bossFightTime = 25; // seconds for boss fight
 let bossTimer;
-let bossMoleTimer;        // NEW: timer for boss jumping between holes
+let bossMoleTimer;        // timer for boss jumping between holes
 const bossMoveInterval = 1500;// ms - speed of boss movement
 
 // Function to get a random hole element and ensure no two holes overlap in size
@@ -32,9 +32,12 @@ function showMole() {
 
     const mole = document.createElement("div");
 
-    // Randomly decide if this mole is a special mole
-    const isSpecialMole = Math.random() < 0.2; // 20% chance for a special mole
-    if (isSpecialMole) {
+    // Randomly decide mole type: bad, special, or regular
+    const randomVal = Math.random();
+    if (randomVal < 0.1) {
+        mole.classList.add("bad-mole");
+        mole.onclick = hitBadMole; // Bad mole click handler
+    } else if (randomVal < 0.3) {
         mole.classList.add("special-mole");
         mole.onclick = hitSpecialMole; // Special mole click handler
     } else {
@@ -59,6 +62,13 @@ function hitMole() {
 // Function to handle special mole hit and update score
 function hitSpecialMole() {
     score += 2; // Double points for special mole
+    document.getElementById("score").textContent = score;
+    activeMole.remove();
+    activeMole = null;
+}
+
+function hitBadMole() {
+    score = Math.max(0, score - 1); // deduct one point, no negative score
     document.getElementById("score").textContent = score;
     activeMole.remove();
     activeMole = null;
@@ -114,7 +124,7 @@ function adjustGridAndHoles(level) {
     } else if (level < 5) {
         gridSize = 4; // 4x4 grid for levels 3 and 4
     } else {
-        gridSize = 5; // 5x5 grid for level 5 and beyond
+        gridSize = 5; // 5x5 grid for level 5 and boss
     }
 
     // Set the grid layout dynamically
@@ -141,7 +151,7 @@ function updateMoleSize(level) {
     // Update mole size in CSS dynamically
     const moleStyle = document.createElement("style");
     moleStyle.innerHTML = `
-        .mole, .special-mole {
+        .mole, .special-mole, .bad-mole {
             width: ${moleSize}px;
             height: ${moleSize}px;
             top: calc(50% - ${moleSize / 2}px);

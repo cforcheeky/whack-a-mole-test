@@ -61,7 +61,21 @@ h1 {
     transition: transform 0.1s ease;
 }
 
-.mole:active, .special-mole:active {
+.bad-mole {
+    background-color: #ff6666;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+    border: 2px solid #900;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.mole:active, .special-mole:active, .bad-mole:active {
     transform: scale(0.9);
 }
 
